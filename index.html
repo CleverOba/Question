@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Are you Gay? 👀</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: linear-gradient(135deg, #f8ffae 0%, #43c6ac 100%);
+      min-height: 100vh;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    h2 {
+      color: #333;
+      margin-bottom: 24px;
+      font-size: 2rem;
+      text-shadow: 1px 1px 2px #fff8;
+      animation: fadeInDown 1s;
+    }
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-30px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+    .input-group {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+    #answer {
+      padding: 10px 16px;
+      border: 2px solid #43c6ac;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      transition: border-color 0.3s;
+      outline: none;
+    }
+    #answer:focus {
+      border-color: #f8ffae;
+    }
+    button {
+      padding: 10px 20px;
+      background: #43c6ac;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      box-shadow: 0 2px 8px #43c6ac44;
+      transition: background 0.3s, transform 0.2s;
+    }
+    button:hover {
+      background: #34a08c;
+      transform: scale(1.05);
+    }
+    #response {
+      color: #e74c3c;
+      margin-top: 10px;
+      font-weight: bold;
+      min-height: 24px;
+      transition: opacity 0.3s;
+    }
+    #final {
+      color: #27ae60;
+      font-weight: bold;
+      margin-top: 28px;
+      font-size: 1.5rem;
+      min-height: 32px;
+      opacity: 0;
+      transform: scale(0.8);
+      transition: opacity 0.6s, transform 0.6s;
+    }
+    #final.show {
+      opacity: 1;
+      transform: scale(1.1);
+      animation: popIn 0.7s;
+    }
+    @keyframes popIn {
+      0% { opacity: 0; transform: scale(0.7);}
+      70% { opacity: 1; transform: scale(1.15);}
+      100% { opacity: 1; transform: scale(1.1);}
+    }
+  </style>
+</head>
+<body>
+  <h2>Are you Gay? 👀 (Type 'Yes')</h2>
+  <div class="input-group">
+    <input type="text" id="answer" autocomplete="off" />
+    <button onclick="checkAnswer()">Submit</button>
+  </div>
+  <div id="response"></div>
+  <div id="final"></div>
+
+  <script>
+    function checkAnswer() {
+      const input = document.getElementById('answer');
+      const response = document.getElementById('response');
+      const final = document.getElementById('final');
+      const userAnswer = input.value.trim().toLowerCase();
+
+      if (userAnswer !== "yes") {
+        response.textContent = "Dumb Ass! You can only type 'Yes'.";
+        final.textContent = "";
+        final.classList.remove('show');
+        input.value = "";
+        input.focus();
+      } else {
+        response.textContent = "";
+        final.textContent = "I knew it😂!";
+        final.classList.add('show');
+        input.disabled = true;
+      }
+    }
+  </script>
+</body>
+</html>
